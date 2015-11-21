@@ -2,17 +2,18 @@ import {Component, View, bootstrap} from 'angular2/angular2';
 
 // Annotation section
 @Component({
-  selector: 'my-app'
+  selector: 'twitch-status'
 })
 @View({
-  template: '<h1>Hello {{ name }}</h1>'
+  templateUrl: '../html/twitch-status.html',
+  styleUrls: ['../css/twitch-status.css']
 })
 // Component controller
-class MyAppComponent {
+class TwitchStatus {
   name: string;
   constructor() {
     this.name = 'Alice!';
   }
 }
 
-bootstrap(MyAppComponent);
+bootstrap(TwitchStatus);

@@ -1,0 +1,160 @@
+$color-base: hsl(77, 2%, 22%);
+$color-fade: hsl(77, 2%, 24%);
+$color-light: hsl(77, 2%, 27%);
+$color-hover: hsl(77,2%,33%);
+$color-press: hsl(77, 2%, 45%);
+
+$color-theme: hsl(266, 43%, 55%);
+$color-theme-bg: hsla(266, 90%, 70%, 0.15);
+$color-theme-bg-hover: hsla(266, 100%, 70%, 0.35);
+$color-theme-bg-active: hsla(266, 100%, 70%, 0.55);
+
+$color-text: hsl(208, 100%, 97%);
+
+$font-main: normal 30px 'Open Sans';
+$font-sub:  normal 20px 'Open Sans';
+$font-small: normal 15px 'Open Sans';
+
+.no-select {
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#page-wrapper {
+	background-color: $color-base;
+	font: $font-main;
+	color: aliceblue;
+	text-align: center;
+	width: 100%;
+	height: 100vh;
+	min-height: 700px;
+	margin-bottom: -60px;
+	
+	#twitch-logo {
+		display: inline-block;
+		position: relative;
+		top: 10px;
+		margin-right: 10px;
+	}
+	#title {
+		display: inline-block;
+		margin-top: -10px;
+	}
+	
+	#container {
+		margin: 0 auto;
+		border: 2px solid $color-theme;
+		border-radius: 5px;
+		width: 350px;
+		height: 700px;
+		
+		.tab {
+			@extend .no-select;
+			display: inline-block;
+			margin-top: 4px;
+			margin-left: -4px;
+			margin-bottom: 2px;
+			width: 31.1%;
+			height: 50px;
+			border-radius: 5px;
+			background-color: $color-theme-bg;
+			transition: 0.3s;
+			cursor: pointer;
+			color: aliceblue;
+			font: $font-sub;
+			line-height: 45px;
+			&:hover {
+				background-color: $color-theme-bg-hover;
+			}
+			&:active {
+				background-color: $color-theme-bg-active;
+			}
+		}
+		#filter {
+			display: inline-block;
+			width: 100%;
+			border-bottom: 1px solid $color-theme;
+			padding: 15 0 15 0;
+			input {
+				border: 1px solid $color-theme;
+				border-radius: 20px;
+				color: aliceblue;
+				font: $font-small;
+				height: 30px;
+				padding: 10px;
+				background: $color-base;
+				transition: 0.2s;
+				&:focus {
+					outline: none;
+					box-shadow: 0 0 5px 1px $color-theme;
+				}
+			}
+		}
+		.user {
+			text-align: left;
+			padding-left: 20px;
+			padding-top: 10px;
+			img {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+			}
+			#middle {
+				padding-left: 15px;
+				.name {
+					font-size: 18px;
+				}
+				.description {
+					color: darkgrey;
+					font-size: 15px;
+				}
+			}
+			#right {
+				margin-left: 40px;
+				.live {
+					margin: 0 auto;
+					margin-bottom: 5px;
+					width: 13px;
+					height: 13px;
+					background-color: red;
+					border-radius: 50%;
+				}
+				div {
+					margin: 0 auto;
+					font: $font-small;
+				}
+			}
+
+		}
+	}
+}
+
+
+
+#foot {
+	font-family: 'Ubuntu';
+	font-size: 18px;
+	background-color: hsl(77, 2%, 22%);
+	font-family: 'Open Sans';
+	color: aliceblue;
+	line-height: 25px;
+	width: 100%;
+	height: 60px;
+	text-align: center;
+}
+
+#foot i, #foot a {
+	color: $color-theme;
+	transition: 0.6s;
+	text-decoration: none;
+}
+
+#foot a:hover, #gh-link:hover i {
+	color: aliceblue;
+	text-decoration: none;
+}
+
+#foot i {
+	padding-left: 2px;
+}

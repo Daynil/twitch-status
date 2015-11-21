@@ -1,0 +1,115 @@
+.no-select, #page-wrapper #container .tab {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; }
+
+#page-wrapper {
+  background-color: #393937;
+  font: normal 30px "Open Sans";
+  color: aliceblue;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  margin-bottom: -60px; }
+  #page-wrapper #twitch-logo {
+    display: inline-block;
+    position: relative;
+    top: 10px;
+    margin-right: 10px; }
+  #page-wrapper #title {
+    display: inline-block;
+    margin-top: -10px; }
+  #page-wrapper #container {
+    margin: 0 auto;
+    border: 2px solid #865bbe;
+    border-radius: 5px;
+    width: 350px;
+    height: 700px; }
+    #page-wrapper #container .tab {
+      display: inline-block;
+      margin-top: 4px;
+      margin-left: -4px;
+      margin-bottom: 2px;
+      width: 31.1%;
+      height: 50px;
+      border-radius: 5px;
+      background-color: rgba(169, 110, 247, 0.15);
+      transition: 0.3s;
+      cursor: pointer;
+      color: aliceblue;
+      font: normal 20px "Open Sans";
+      line-height: 45px; }
+      #page-wrapper #container .tab:hover {
+        background-color: rgba(168, 102, 255, 0.35); }
+      #page-wrapper #container .tab:active {
+        background-color: rgba(168, 102, 255, 0.55); }
+    #page-wrapper #container #filter {
+      display: inline-block;
+      width: 100%;
+      border-bottom: 1px solid #865bbe;
+      padding: 15 0 15 0; }
+      #page-wrapper #container #filter input {
+        border: 1px solid #865bbe;
+        border-radius: 20px;
+        color: aliceblue;
+        font: normal 15px "Open Sans";
+        height: 30px;
+        padding: 10px;
+        background: #393937;
+        transition: 0.2s; }
+        #page-wrapper #container #filter input:focus {
+          outline: none;
+          box-shadow: 0 0 5px 1px #865bbe; }
+    #page-wrapper #container .user {
+      text-align: left;
+      padding-left: 20px;
+      padding-top: 10px; }
+      #page-wrapper #container .user img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%; }
+      #page-wrapper #container .user #middle {
+        padding-left: 15px; }
+        #page-wrapper #container .user #middle .name {
+          font-size: 18px; }
+        #page-wrapper #container .user #middle .description {
+          color: darkgrey;
+          font-size: 15px; }
+      #page-wrapper #container .user #right {
+        margin-left: 40px; }
+        #page-wrapper #container .user #right .live {
+          margin: 0 auto;
+          margin-bottom: 5px;
+          width: 13px;
+          height: 13px;
+          background-color: red;
+          border-radius: 50%; }
+        #page-wrapper #container .user #right div {
+          margin: 0 auto;
+          font: normal 15px "Open Sans"; }
+
+#foot {
+  font-family: 'Ubuntu';
+  font-size: 18px;
+  background-color: #393937;
+  font-family: 'Open Sans';
+  color: aliceblue;
+  line-height: 25px;
+  width: 100%;
+  height: 60px;
+  text-align: center; }
+
+#foot i, #foot a {
+  color: #865bbe;
+  transition: 0.6s;
+  text-decoration: none; }
+
+#foot a:hover, #gh-link:hover i {
+  color: aliceblue;
+  text-decoration: none; }
+
+#foot i {
+  padding-left: 2px; }
+
+/*# sourceMappingURL=twitch-status.css.map */
