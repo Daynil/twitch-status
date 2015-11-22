@@ -48,12 +48,13 @@ $font-small: normal 15px 'Open Sans';
 		border-radius: 5px;
 		width: 350px;
 		height: 700px;
-		
+
 		.tab {
 			@extend .no-select;
 			display: inline-block;
 			margin-top: 4px;
-			margin-left: -4px;
+			margin-right: -1.5px;
+			margin-left: -1.5px;
 			margin-bottom: 2px;
 			width: 31.1%;
 			height: 50px;
@@ -95,6 +96,12 @@ $font-small: normal 15px 'Open Sans';
 			text-align: left;
 			padding-left: 20px;
 			padding-top: 10px;
+			padding-bottom: 10px;
+			transition: 0.2s;
+			cursor: pointer;
+			&:hover {
+				background-color: $color-theme-bg-hover;
+			}
 			img {
 				width: 50px;
 				height: 50px;

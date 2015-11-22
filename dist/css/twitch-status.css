@@ -29,7 +29,8 @@
     #page-wrapper #container .tab {
       display: inline-block;
       margin-top: 4px;
-      margin-left: -4px;
+      margin-right: -1.5px;
+      margin-left: -1.5px;
       margin-bottom: 2px;
       width: 31.1%;
       height: 50px;
@@ -64,7 +65,12 @@
     #page-wrapper #container .user {
       text-align: left;
       padding-left: 20px;
-      padding-top: 10px; }
+      padding-top: 10px;
+      padding-bottom: 10px;
+      transition: 0.2s;
+      cursor: pointer; }
+      #page-wrapper #container .user:hover {
+        background-color: rgba(168, 102, 255, 0.35); }
       #page-wrapper #container .user img {
         width: 50px;
         height: 50px;
