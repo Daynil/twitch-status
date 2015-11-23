@@ -2,7 +2,7 @@
 	<img id="twitch-logo" src="http://www-cdn.jtvnw.net/images/xarth/footer_glitch.png"><h2 id="title">Twitch Status</h2>
 	
 	<div id="container">
-		<div class="tab">All</div>
+		<div class="tab" (click)="getTwitch()">All</div>
 		<div class="tab">Live</div>
 		<div class="tab">Offline</div>
 		<div id="filter"><input type="text" id="search" placeholder="Filter"></input></div>
@@ -39,6 +39,7 @@
 				<div>1200</div>
 			</div>
 		</div>
+		<p>{{ userService.aUser }}</p>
 	</div>
 </div>
 

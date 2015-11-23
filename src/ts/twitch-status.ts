@@ -1,8 +1,11 @@
 import {Component, View, bootstrap} from 'angular2/angular2';
+import {HTTP_PROVIDERS} from 'angular2/http'
+import {UserService} from './user-service'
 
 // Annotation section
 @Component({
-  selector: 'twitch-status'
+  selector: 'twitch-status',
+  viewBindings: [UserService]
 })
 @View({
   templateUrl: '../html/twitch-status.html',
@@ -11,9 +14,17 @@ import {Component, View, bootstrap} from 'angular2/angular2';
 // Component controller
 class TwitchStatus {
   name: string;
-  constructor() {
+  quote: string;
+  twitchResult: string;
+  
+  constructor(public userService: UserService) {
     this.name = 'Alice!';
   }
+  
+  getTwitch() {
+	  this.userService.getTwitch();
+  }
+  	
 }
 
-bootstrap(TwitchStatus);
+bootstrap(TwitchStatus, [HTTP_PROVIDERS]);
