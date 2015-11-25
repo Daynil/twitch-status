@@ -12,11 +12,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var http_1 = require('angular2/http');
 var user_service_1 = require('./user-service');
+var twitch_user_1 = require('./twitch-user');
 // Annotation section
 var TwitchStatus = (function () {
     function TwitchStatus(userService) {
         this.userService = userService;
-        this.name = 'Alice!';
     }
     TwitchStatus.prototype.getTwitch = function () {
         this.userService.getTwitch();
@@ -28,12 +28,14 @@ var TwitchStatus = (function () {
         }),
         angular2_1.View({
             templateUrl: '../html/twitch-status.html',
-            styleUrls: ['../css/twitch-status.css']
+            styleUrls: ['../css/twitch-status.css'],
+            directives: [angular2_1.CORE_DIRECTIVES, twitch_user_1.TwitchUser]
         }), 
         __metadata('design:paramtypes', [user_service_1.UserService])
     ], TwitchStatus);
     return TwitchStatus;
 })();
-angular2_1.bootstrap(TwitchStatus, [http_1.HTTP_PROVIDERS]);
+angular2_1.bootstrap(TwitchStatus, [http_1.HTTP_PROVIDERS])
+    .then(function (success) { return console.log(success); }, function (error) { return console.log(error); });
 
 //# sourceMappingURL=twitch-status.js.map

@@ -1,6 +1,7 @@
-import {Component, View, bootstrap} from 'angular2/angular2';
+import {Component, View, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
 import {HTTP_PROVIDERS} from 'angular2/http'
 import {UserService} from './user-service'
+import {TwitchUser} from './twitch-user'
 
 // Annotation section
 @Component({
@@ -9,7 +10,8 @@ import {UserService} from './user-service'
 })
 @View({
   templateUrl: '../html/twitch-status.html',
-  styleUrls: ['../css/twitch-status.css']
+  styleUrls: ['../css/twitch-status.css'],
+  directives: [CORE_DIRECTIVES, TwitchUser]
 })
 // Component controller
 class TwitchStatus {
@@ -18,7 +20,7 @@ class TwitchStatus {
   twitchResult: string;
   
   constructor(public userService: UserService) {
-    this.name = 'Alice!';
+	  
   }
   
   getTwitch() {
@@ -27,4 +29,8 @@ class TwitchStatus {
   	
 }
 
-bootstrap(TwitchStatus, [HTTP_PROVIDERS]);
+bootstrap(TwitchStatus, [HTTP_PROVIDERS])
+	.then(
+		success => console.log(success),
+		error => console.log(error)
+	);

@@ -1,0 +1,13 @@
+<div class="user">
+	<a [href]="channelurl">
+		<div id="left" style="display: inline-block;"><img [src]="iconurl"/></div>
+		<div id="middle" style="display: inline-block;">
+			<div class="name">{{ name }}</div>
+			<div [title]="description" class="description">{{  description }}</div>
+		</div>
+		<div id="right" style="display: inline-block;">
+			<div class="live"></div>
+			<div>{{ viewers }}</div>
+		</div>
+	</a>
+</div>

@@ -62,38 +62,6 @@
         #page-wrapper #container #filter input:focus {
           outline: none;
           box-shadow: 0 0 5px 1px #865bbe; }
-    #page-wrapper #container .user {
-      text-align: left;
-      padding-left: 20px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      transition: 0.2s;
-      cursor: pointer; }
-      #page-wrapper #container .user:hover {
-        background-color: rgba(168, 102, 255, 0.35); }
-      #page-wrapper #container .user img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%; }
-      #page-wrapper #container .user #middle {
-        padding-left: 15px; }
-        #page-wrapper #container .user #middle .name {
-          font-size: 18px; }
-        #page-wrapper #container .user #middle .description {
-          color: darkgrey;
-          font-size: 15px; }
-      #page-wrapper #container .user #right {
-        margin-left: 40px; }
-        #page-wrapper #container .user #right .live {
-          margin: 0 auto;
-          margin-bottom: 5px;
-          width: 13px;
-          height: 13px;
-          background-color: red;
-          border-radius: 50%; }
-        #page-wrapper #container .user #right div {
-          margin: 0 auto;
-          font: normal 15px "Open Sans"; }
 
 #foot {
   font-family: 'Ubuntu';

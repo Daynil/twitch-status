@@ -1,0 +1,45 @@
+.user {
+  width: 330px;
+  text-align: left;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: 0.2s;
+  cursor: pointer; }
+  .user:hover {
+    background-color: rgba(168, 102, 255, 0.35); }
+  .user a {
+    text-decoration: none; }
+  .user img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; }
+  .user #middle {
+    width: 210px;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 15px; }
+    .user #middle .name {
+      color: aliceblue;
+      font-size: 18px; }
+    .user #middle .description {
+      width: 210px;
+      overflow: hidden;
+      color: darkgrey;
+      font-size: 15px; }
+  .user #right {
+    width: 35px;
+    text-align: center; }
+    .user #right .live {
+      margin: 0 auto;
+      margin-bottom: 5px;
+      width: 13px;
+      height: 13px;
+      background-color: red;
+      border-radius: 50%; }
+    .user #right div {
+      margin: 0 auto;
+      color: aliceblue;
+      font: normal 15px "Open Sans"; }
+
+/*# sourceMappingURL=twitch-user.css.map */

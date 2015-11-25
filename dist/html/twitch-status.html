@@ -6,38 +6,18 @@
 		<div class="tab">Live</div>
 		<div class="tab">Offline</div>
 		<div id="filter"><input type="text" id="search" placeholder="Filter"></input></div>
-		<div class="user">
-			<div id="left" style="display: inline-block;"><img src="http://res.cloudinary.com/dz9rf4hwz/image/upload/v1448144142/bXdn9_2_hdn4va.jpg"/></div>
-			<div id="middle" style="display: inline-block">
-				<div class="name">Daynil</div>
-				<div class="description">Awesome coding, live!</div>
-			</div>
-			<div id="right" style="display: inline-block">
-				<div class="live"></div>
-				<div>1200</div>
-			</div>
-		</div>
-		<div class="user">
-			<div id="left" style="display: inline-block;"><img src="http://res.cloudinary.com/dz9rf4hwz/image/upload/v1448144142/bXdn9_2_hdn4va.jpg"/></div>
-			<div id="middle" style="display: inline-block">
-				<div class="name">Daynil</div>
-				<div class="description">Awesome coding, live!</div>
-			</div>
-			<div id="right" style="display: inline-block">
-				<div class="live"></div>
-				<div>1200</div>
-			</div>
-		</div>
-		<div class="user">
-			<div id="left" style="display: inline-block;"><img src="http://res.cloudinary.com/dz9rf4hwz/image/upload/v1448144142/bXdn9_2_hdn4va.jpg"/></div>
-			<div id="middle" style="display: inline-block">
-				<div class="name">Daynil</div>
-				<div class="description">Awesome coding, live!</div>
-			</div>
-			<div id="right" style="display: inline-block">
-				<div class="live"></div>
-				<div>1200</div>
-			</div>
+		<div id="users-display">
+			<twitch-user
+				*ng-for="#user of userService.twitchUserList"
+				[name]="user.name"
+				[iconurl]="user.iconUrl"
+				[channelurl]="user.channelUrl"
+				[popularity]="user.popularity"
+				[islive]="user.isLive"
+				[description]="user.description"
+				[viewers]="user.viewers"
+				[previewurl]="user.previewUrl">
+			</twitch-user>
 		</div>
 		<p>{{ userService.aUser }}</p>
 	</div>

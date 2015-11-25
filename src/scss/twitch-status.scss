@@ -92,48 +92,6 @@ $font-small: normal 15px 'Open Sans';
 				}
 			}
 		}
-		.user {
-			text-align: left;
-			padding-left: 20px;
-			padding-top: 10px;
-			padding-bottom: 10px;
-			transition: 0.2s;
-			cursor: pointer;
-			&:hover {
-				background-color: $color-theme-bg-hover;
-			}
-			img {
-				width: 50px;
-				height: 50px;
-				border-radius: 50%;
-			}
-			#middle {
-				padding-left: 15px;
-				.name {
-					font-size: 18px;
-				}
-				.description {
-					color: darkgrey;
-					font-size: 15px;
-				}
-			}
-			#right {
-				margin-left: 40px;
-				.live {
-					margin: 0 auto;
-					margin-bottom: 5px;
-					width: 13px;
-					height: 13px;
-					background-color: red;
-					border-radius: 50%;
-				}
-				div {
-					margin: 0 auto;
-					font: $font-small;
-				}
-			}
-
-		}
 	}
 }
 

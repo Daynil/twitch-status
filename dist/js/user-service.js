@@ -22,15 +22,48 @@ var TwitchUser = (function () {
 exports.TwitchUser = TwitchUser;
 var UserService = (function () {
     function UserService(http) {
+        var _this = this;
         this.http = http;
+        this.baseUrl = 'https://api.twitch.tv/kraken/';
+        this.twitchUserList = [];
+        this.getProgrammingChannels('medrybw', '1')
+            .subscribe(function (channelInfo) {
+            var baseObject = channelInfo.channels[0];
+            var alwaysLive = new TwitchUser(baseObject.display_name, baseObject.logo, baseObject.url);
+            alwaysLive.popularity = baseObject.views;
+            _this.getLiveStreamInfo(alwaysLive.name.toLowerCase())
+                .subscribe(function (streamInfo) {
+                alwaysLive.isLive = (streamInfo.stream) ? true : false;
+                if (alwaysLive.isLive) {
+                    alwaysLive.description = streamInfo.stream.channel.status;
+                    alwaysLive.viewers = streamInfo.stream.viewers;
+                    if (streamInfo.preview)
+                        alwaysLive.previewUrl = streamInfo.preview.small;
+                }
+                _this.twitchUserList.push(alwaysLive);
+                console.log(_this.twitchUserList);
+            }, function (err) { return _this.handleError(err); });
+        }, function (err) { return _this.handleError(err); });
     }
     UserService.prototype.getTwitch = function () {
+    };
+    UserService.prototype.getProgrammingChannels = function (query, resultLimit) {
+        return this.http.get(this.baseUrl + "search/channels?q=" + query + "&limit=" + resultLimit)
+            .map(function (res) { return res.json(); });
+    };
+    UserService.prototype.getLiveStreamInfo = function (channelName) {
+        return this.http.get(this.baseUrl + "streams/" + channelName)
+            .map(function (res) { return res.json(); });
+    };
+    UserService.prototype.getFullList = function () {
         var _this = this;
-        this.http.get('https://api.twitch.tv/kraken/streams/esl_lol')
-            .map(function (res) { return res.json(); })
-            .subscribe(function (data) {
-            _this.aUser = data.stream.channel.name;
-        }, function (err) { return console.log('Some problem, yo: ' + err); });
+        this.getProgrammingChannels('programming', '100')
+            .subscribe(function (channelList) {
+            console.log(channelList);
+        }, function (err) { return _this.handleError(err); });
+    };
+    UserService.prototype.handleError = function (error) {
+        console.log('Some problem, yo: ' + error);
     };
     UserService = __decorate([
         core_1.Injectable(), 
