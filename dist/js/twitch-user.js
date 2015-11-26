@@ -14,6 +14,12 @@ var angular2_1 = require('angular2/angular2');
 var TwitchUser = (function () {
     function TwitchUser() {
     }
+    TwitchUser.prototype.setLiveIcon = function () {
+        return {
+            "live": this.islive,
+            "offline": !this.islive
+        };
+    };
     TwitchUser = __decorate([
         angular2_1.Component({
             selector: 'twitch-user',

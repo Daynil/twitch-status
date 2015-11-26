@@ -1,5 +1,5 @@
 .user {
-  width: 330px;
+  width: 340px;
   text-align: left;
   padding-left: 20px;
   padding-top: 10px;
@@ -7,7 +7,7 @@
   transition: 0.2s;
   cursor: pointer; }
   .user:hover {
-    background-color: rgba(168, 102, 255, 0.35); }
+    background-color: rgba(168, 102, 255, 0.18); }
   .user a {
     text-decoration: none; }
   .user img {
@@ -30,16 +30,25 @@
   .user #right {
     width: 35px;
     text-align: center; }
-    .user #right .live {
-      margin: 0 auto;
-      margin-bottom: 5px;
-      width: 13px;
-      height: 13px;
-      background-color: red;
-      border-radius: 50%; }
     .user #right div {
       margin: 0 auto;
       color: aliceblue;
       font: normal 15px "Open Sans"; }
+
+.live {
+  margin: 0 auto;
+  margin-bottom: 5px;
+  width: 13px;
+  height: 13px;
+  background-color: #e62b1a;
+  border-radius: 50%; }
+
+.offline {
+  margin: 0 auto;
+  margin-bottom: 5px;
+  width: 13px;
+  height: 13px;
+  background-color: #786e6d;
+  border-radius: 50%; }
 
 /*# sourceMappingURL=twitch-user.css.map */

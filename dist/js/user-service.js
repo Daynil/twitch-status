@@ -12,9 +12,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var http_1 = require('angular2/http');
 var core_1 = require('angular2/core');
 var TwitchUser = (function () {
-    function TwitchUser(name, iconUrl, channelUrl) {
+    function TwitchUser(name, channelUrl) {
         this.name = name;
-        this.iconUrl = iconUrl;
         this.channelUrl = channelUrl;
     }
     return TwitchUser;
@@ -26,10 +25,12 @@ var UserService = (function () {
         this.http = http;
         this.baseUrl = 'https://api.twitch.tv/kraken/';
         this.twitchUserList = [];
-        this.getProgrammingChannels('medrybw', '1')
+        this.twitchIcon = 'http://www-cdn.jtvnw.net/images/xarth/footer_glitch.png';
+        this.getChannels('medrybw', '1')
             .subscribe(function (channelInfo) {
             var baseObject = channelInfo.channels[0];
-            var alwaysLive = new TwitchUser(baseObject.display_name, baseObject.logo, baseObject.url);
+            var alwaysLive = new TwitchUser(baseObject.display_name, baseObject.url);
+            alwaysLive.iconUrl = baseObject.logo;
             alwaysLive.popularity = baseObject.views;
             _this.getLiveStreamInfo(alwaysLive.name.toLowerCase())
                 .subscribe(function (streamInfo) {
@@ -46,8 +47,12 @@ var UserService = (function () {
         }, function (err) { return _this.handleError(err); });
     }
     UserService.prototype.getTwitch = function () {
+        if (this.twitchUserList.length < 10)
+            this.getAllProgramming();
+        else
+            console.log(this.twitchUserList);
     };
-    UserService.prototype.getProgrammingChannels = function (query, resultLimit) {
+    UserService.prototype.getChannels = function (query, resultLimit) {
         return this.http.get(this.baseUrl + "search/channels?q=" + query + "&limit=" + resultLimit)
             .map(function (res) { return res.json(); });
     };
@@ -55,11 +60,30 @@ var UserService = (function () {
         return this.http.get(this.baseUrl + "streams/" + channelName)
             .map(function (res) { return res.json(); });
     };
-    UserService.prototype.getFullList = function () {
+    UserService.prototype.getAllProgramming = function () {
         var _this = this;
-        this.getProgrammingChannels('programming', '100')
+        this.getChannels('programming', '15')
             .subscribe(function (channelList) {
-            console.log(channelList);
+            var channelArray = channelList.channels;
+            channelArray.map(function (channel) {
+                var userChannel = new TwitchUser(channel.display_name, channel.url);
+                if (channel.logo)
+                    userChannel.iconUrl = channel.logo;
+                else
+                    userChannel.iconUrl = _this.twitchIcon;
+                userChannel.popularity = channel.views;
+                _this.getLiveStreamInfo(userChannel.name.toLowerCase())
+                    .subscribe(function (streamInfo) {
+                    userChannel.isLive = (streamInfo.stream) ? true : false;
+                    if (userChannel.isLive) {
+                        userChannel.description = streamInfo.stream.channel.status;
+                        userChannel.viewers = streamInfo.stream.viewers;
+                        if (streamInfo.preview)
+                            userChannel.previewUrl = streamInfo.preview.small;
+                    }
+                    _this.twitchUserList.push(userChannel);
+                }, function (err) { return _this.handleError(err); });
+            });
         }, function (err) { return _this.handleError(err); });
     };
     UserService.prototype.handleError = function (error) {

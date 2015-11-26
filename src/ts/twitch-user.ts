@@ -27,4 +27,11 @@ export class TwitchUser {
 	constructor() {
 		
 	}
+	
+	setLiveIcon() {
+		return {
+			"live": this.islive,
+			"offline": !this.islive
+		}
+	}
 }

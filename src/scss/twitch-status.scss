@@ -46,7 +46,7 @@ $font-small: normal 15px 'Open Sans';
 		margin: 0 auto;
 		border: 2px solid $color-theme;
 		border-radius: 5px;
-		width: 350px;
+		width: 360px;
 		height: 700px;
 
 		.tab {
@@ -92,6 +92,32 @@ $font-small: normal 15px 'Open Sans';
 				}
 			}
 		}
+		#users-display {
+			height: 583px; 
+			max-width: 100%;
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+	}
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px hsla(266, 70%, 70%, 0.2); 
+	box-shadow: inset 0 0 6px hsla(266, 43%, 55%, 0.2); 
+    border-radius: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 10px hsla(266, 70%, 70%, 0.7); 
+	box-shadow: inset 0 0 10px hsla(266, 70%, 70%, 0.7);
+	&:hover {
+		-webkit-box-shadow: inset 0 0 20px hsla(266, 79.2%, 66.1%, 1); 
+		box-shadow: inset 0 0 20px hsla(266, 79.2%, 66.1%, 1);
 	}
 }
 

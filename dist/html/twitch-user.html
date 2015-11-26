@@ -6,7 +6,7 @@
 			<div [title]="description" class="description">{{  description }}</div>
 		</div>
 		<div id="right" style="display: inline-block;">
-			<div class="live"></div>
+			<div [ng-class]="setLiveIcon()"></div>
 			<div>{{ viewers }}</div>
 		</div>
 	</a>

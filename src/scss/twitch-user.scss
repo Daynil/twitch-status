@@ -1,8 +1,8 @@
-$color-theme-bg-hover: hsla(266, 100%, 70%, 0.35);
+$color-theme-bg-hover: hsla(266, 100%, 70%, 0.18);
 $font-small: normal 15px 'Open Sans';
 
 .user {
-	width: 330px;
+	width: 340px;
 	text-align: left;
 	padding-left: 20px;
 	padding-top: 10px;
@@ -39,19 +39,28 @@ $font-small: normal 15px 'Open Sans';
 	#right {
 		width: 35px;
 		text-align: center;
-		.live {
-			margin: 0 auto;
-			margin-bottom: 5px;
-			width: 13px;
-			height: 13px;
-			background-color: red;
-			border-radius: 50%;
-		}
 		div {
 			margin: 0 auto;
 			color: aliceblue;
 			font: $font-small;
 		}
 	}
+}
 
+.live {
+	margin: 0 auto;
+	margin-bottom: 5px;
+	width: 13px;
+	height: 13px;
+	background-color: hsl(5, 80%, 50%);
+	border-radius: 50%;
+}
+
+.offline {
+	margin: 0 auto;
+	margin-bottom: 5px;
+	width: 13px;
+	height: 13px;
+	background-color: hsl(5, 5%, 45%);
+	border-radius: 50%;
 }
