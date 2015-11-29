@@ -26,6 +26,10 @@ class TwitchStatus {
   getTwitch() {
 	  this.userService.getTwitch();
   }
+  
+  filtering(filterText: string) {
+	  this.userService.filtering(filterText);
+  }
   	
 }
 

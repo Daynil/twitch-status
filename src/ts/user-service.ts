@@ -19,6 +19,7 @@ export class UserService {
 	baseUrl = 'https://api.twitch.tv/kraken/';
 	
 	twitchUserList: TwitchUser[] = [];
+	filteredUserList: TwitchUser[] = [];
 	twitchIcon = 'http://www-cdn.jtvnw.net/images/xarth/footer_glitch.png';
 	
 	constructor (public http: Http) {
@@ -39,6 +40,7 @@ export class UserService {
 									if (streamInfo.preview) alwaysLive.previewUrl = streamInfo.preview.small;
 								}
 								this.twitchUserList.push(alwaysLive);
+								this.filteredUserList.push(alwaysLive);
 								console.log(this.twitchUserList);
 							},
 							err => this.handleError(err)
@@ -46,7 +48,25 @@ export class UserService {
 				},
 				err => this.handleError(err)
 			);
-	 }
+		}
+	
+	filtering(filterText: string) {
+		if (filterText.length === 0) this.filteredUserList = this.twitchUserList;
+		else {
+			this.filteredUserList = this.twitchUserList.filter(
+				user => {
+					let regText = "";
+					filterText.toLowerCase().split("").map( letter => regText += ".*" + letter );
+					let filterRegex = new RegExp(regText, "ig");
+					return filterRegex.test(user.name);
+				}
+			);
+		}
+	}
+	
+	removeDupes(array: any[]): any[] {
+		return array.filter( (item, currPos) => { return array.indexOf(item) == currPos; } );
+	}
 	
 	getTwitch() {
 		if (this.twitchUserList.length < 10) this.getAllProgramming();
@@ -83,6 +103,7 @@ export class UserService {
 										if (streamInfo.preview) userChannel.previewUrl = streamInfo.preview.small;
 									}
 									this.twitchUserList.push(userChannel);
+									this.filteredUserList.push(userChannel);
 								},
 								err => this.handleError(err)
 							);

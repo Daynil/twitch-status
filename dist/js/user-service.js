@@ -25,6 +25,7 @@ var UserService = (function () {
         this.http = http;
         this.baseUrl = 'https://api.twitch.tv/kraken/';
         this.twitchUserList = [];
+        this.filteredUserList = [];
         this.twitchIcon = 'http://www-cdn.jtvnw.net/images/xarth/footer_glitch.png';
         this.getChannels('medrybw', '1')
             .subscribe(function (channelInfo) {
@@ -42,10 +43,26 @@ var UserService = (function () {
                         alwaysLive.previewUrl = streamInfo.preview.small;
                 }
                 _this.twitchUserList.push(alwaysLive);
+                _this.filteredUserList.push(alwaysLive);
                 console.log(_this.twitchUserList);
             }, function (err) { return _this.handleError(err); });
         }, function (err) { return _this.handleError(err); });
     }
+    UserService.prototype.filtering = function (filterText) {
+        if (filterText.length === 0)
+            this.filteredUserList = this.twitchUserList;
+        else {
+            this.filteredUserList = this.twitchUserList.filter(function (user) {
+                var regText = "";
+                filterText.toLowerCase().split("").map(function (letter) { return regText += ".*" + letter; });
+                var filterRegex = new RegExp(regText, "ig");
+                return filterRegex.test(user.name);
+            });
+        }
+    };
+    UserService.prototype.removeDupes = function (array) {
+        return array.filter(function (item, currPos) { return array.indexOf(item) == currPos; });
+    };
     UserService.prototype.getTwitch = function () {
         if (this.twitchUserList.length < 10)
             this.getAllProgramming();
@@ -82,6 +99,7 @@ var UserService = (function () {
                             userChannel.previewUrl = streamInfo.preview.small;
                     }
                     _this.twitchUserList.push(userChannel);
+                    _this.filteredUserList.push(userChannel);
                 }, function (err) { return _this.handleError(err); });
             });
         }, function (err) { return _this.handleError(err); });

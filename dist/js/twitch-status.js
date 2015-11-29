@@ -21,6 +21,9 @@ var TwitchStatus = (function () {
     TwitchStatus.prototype.getTwitch = function () {
         this.userService.getTwitch();
     };
+    TwitchStatus.prototype.filtering = function (filterText) {
+        this.userService.filtering(filterText);
+    };
     TwitchStatus = __decorate([
         angular2_1.Component({
             selector: 'twitch-status',

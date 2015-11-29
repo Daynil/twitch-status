@@ -5,10 +5,10 @@
 		<div class="tab" (click)="getTwitch()">All</div>
 		<div class="tab">Live</div>
 		<div class="tab">Offline</div>
-		<div id="filter"><input type="text" id="search" placeholder="Filter"></input></div>
+		<div id="filter"><input type="text" id="search" placeholder="Filter" (input)="filtering($event.target.value)"></input></div>
 		<div id="users-display">
 			<twitch-user
-				*ng-for="#user of userService.twitchUserList"
+				*ng-for="#user of userService.filteredUserList"
 				[name]="user.name"
 				[iconurl]="user.iconUrl"
 				[channelurl]="user.channelUrl"
