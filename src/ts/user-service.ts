@@ -20,6 +20,7 @@ export class UserService {
 	
 	twitchUserList: TwitchUser[] = [];
 	filteredUserList: TwitchUser[] = [];
+	liveFilter: string = "All";
 	twitchIcon = 'http://www-cdn.jtvnw.net/images/xarth/footer_glitch.png';
 	
 	constructor (public http: Http) {
@@ -51,9 +52,21 @@ export class UserService {
 		}
 	
 	filtering(filterText: string) {
-		if (filterText.length === 0) this.filteredUserList = this.twitchUserList;
+		let currUserList;
+		switch (this.liveFilter) {
+			case "All":
+				currUserList = this.twitchUserList;
+				break;
+			case "Live":
+				currUserList = this.twitchUserList.filter( user => {return user.isLive} );
+				break;
+			case "Offline":
+				currUserList = this.twitchUserList.filter( user => {return !user.isLive} );
+				break;
+		}
+		if (filterText.length === 0) this.filteredUserList = currUserList;
 		else {
-			this.filteredUserList = this.twitchUserList.filter(
+			this.filteredUserList = currUserList.filter(
 				user => {
 					let regText = "";
 					filterText.toLowerCase().split("").map( letter => regText += ".*" + letter );
@@ -61,6 +74,22 @@ export class UserService {
 					return filterRegex.test(user.name);
 				}
 			);
+		}
+	}
+	
+	filterLive(type: string) {
+		switch (type) {
+			case "All":
+				this.liveFilter = "All";
+				break;
+			case "Live":
+				this.liveFilter = "Live";
+				break;
+			case "Offline":
+				this.liveFilter = "Offline";
+				break;
+			default:
+				break;
 		}
 	}
 	

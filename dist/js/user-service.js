@@ -26,6 +26,7 @@ var UserService = (function () {
         this.baseUrl = 'https://api.twitch.tv/kraken/';
         this.twitchUserList = [];
         this.filteredUserList = [];
+        this.liveFilter = "All";
         this.twitchIcon = 'http://www-cdn.jtvnw.net/images/xarth/footer_glitch.png';
         this.getChannels('medrybw', '1')
             .subscribe(function (channelInfo) {
@@ -49,15 +50,42 @@ var UserService = (function () {
         }, function (err) { return _this.handleError(err); });
     }
     UserService.prototype.filtering = function (filterText) {
+        var currUserList;
+        switch (this.liveFilter) {
+            case "All":
+                currUserList = this.twitchUserList;
+                break;
+            case "Live":
+                currUserList = this.twitchUserList.filter(function (user) { return user.isLive; });
+                break;
+            case "Offline":
+                currUserList = this.twitchUserList.filter(function (user) { return !user.isLive; });
+                break;
+        }
         if (filterText.length === 0)
-            this.filteredUserList = this.twitchUserList;
+            this.filteredUserList = currUserList;
         else {
-            this.filteredUserList = this.twitchUserList.filter(function (user) {
+            this.filteredUserList = currUserList.filter(function (user) {
                 var regText = "";
                 filterText.toLowerCase().split("").map(function (letter) { return regText += ".*" + letter; });
                 var filterRegex = new RegExp(regText, "ig");
                 return filterRegex.test(user.name);
             });
+        }
+    };
+    UserService.prototype.filterLive = function (type) {
+        switch (type) {
+            case "All":
+                this.liveFilter = "All";
+                break;
+            case "Live":
+                this.liveFilter = "Live";
+                break;
+            case "Offline":
+                this.liveFilter = "Offline";
+                break;
+            default:
+                break;
         }
     };
     UserService.prototype.removeDupes = function (array) {
