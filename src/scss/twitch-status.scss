@@ -5,6 +5,8 @@ $color-hover: hsl(77,2%,33%);
 $color-press: hsl(77, 2%, 45%);
 
 $color-theme: hsl(266, 43%, 55%);
+$color-theme-hover: hsl(266, 43%, 65%);
+$color-theme-active: hsl(266, 43%, 75%);
 $color-theme-bg: hsla(266, 90%, 70%, 0.15);
 $color-theme-bg-hover: hsla(266, 100%, 70%, 0.35);
 $color-theme-bg-active: hsla(266, 100%, 70%, 0.55);
@@ -14,6 +16,21 @@ $color-text: hsl(208, 100%, 97%);
 $font-main: normal 30px 'Open Sans';
 $font-sub:  normal 20px 'Open Sans';
 $font-small: normal 15px 'Open Sans';
+
+.inputs {	
+	border: 1px solid $color-theme;
+	border-radius: 20px;
+	color: aliceblue;
+	font: $font-small;
+	height: 30px;
+	padding: 10px;
+	background: $color-base;
+	transition: 0.2s;
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 5px 1px $color-theme;
+	}
+}
 
 .no-select {
 	-webkit-user-select: none;
@@ -31,6 +48,59 @@ $font-small: normal 15px 'Open Sans';
 	min-height: 700px;
 	margin-bottom: -60px;
 	
+	.tab {
+		@extend .no-select;
+		display: inline-block;
+		margin-top: 4px;
+		margin-right: -1.5px;
+		margin-left: -1.5px;
+		margin-bottom: 2px;
+		width: 31.1%;
+		height: 50px;
+		border-radius: 5px;
+		background-color: $color-theme-bg;
+		transition: 0.3s;
+		cursor: pointer;
+		color: aliceblue;
+		font: $font-sub;
+		line-height: 45px;
+		&:hover {
+			background-color: $color-theme-bg-hover;
+		}
+		&:active {
+			background-color: $color-theme-bg-active;
+		}
+	}
+	
+	#controls {
+		display: inline-block;
+		vertical-align: top;
+		padding-top: 122px;
+		.add-button {
+			position: relative;
+			top: 4px;
+			margin-left: 2px;
+			color: $color-theme;
+			cursor: pointer;
+			font-size: 30px;
+			transition: 0.2s;
+			&:hover {
+				color: $color-theme-hover;
+			}
+			&:active {
+				color: $color-theme-active;
+			}
+		}
+		.amount {
+			@extend .inputs;
+			width: 51px;
+    		border-radius: 11px;
+		}
+		#get-programming {
+			font-size: 18px;
+		}
+	}
+	
 	#twitch-logo {
 		display: inline-block;
 		position: relative;
@@ -42,54 +112,21 @@ $font-small: normal 15px 'Open Sans';
 		margin-top: -10px;
 	}
 	
-	#container {
+	#list-container {
+		display: inline-block;
 		margin: 0 auto;
 		border: 2px solid $color-theme;
 		border-radius: 5px;
 		width: 360px;
 		height: 700px;
 
-		.tab {
-			@extend .no-select;
-			display: inline-block;
-			margin-top: 4px;
-			margin-right: -1.5px;
-			margin-left: -1.5px;
-			margin-bottom: 2px;
-			width: 31.1%;
-			height: 50px;
-			border-radius: 5px;
-			background-color: $color-theme-bg;
-			transition: 0.3s;
-			cursor: pointer;
-			color: aliceblue;
-			font: $font-sub;
-			line-height: 45px;
-			&:hover {
-				background-color: $color-theme-bg-hover;
-			}
-			&:active {
-				background-color: $color-theme-bg-active;
-			}
-		}
 		#filter {
 			display: inline-block;
 			width: 100%;
 			border-bottom: 1px solid $color-theme;
 			padding: 15 0 15 0;
 			input {
-				border: 1px solid $color-theme;
-				border-radius: 20px;
-				color: aliceblue;
-				font: $font-small;
-				height: 30px;
-				padding: 10px;
-				background: $color-base;
-				transition: 0.2s;
-				&:focus {
-					outline: none;
-					box-shadow: 0 0 5px 1px $color-theme;
-				}
+				@extend .inputs;
 			}
 		}
 		#users-display {

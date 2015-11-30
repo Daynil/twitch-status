@@ -87,15 +87,10 @@ var UserService = (function () {
             default:
                 break;
         }
+        this.filtering("");
     };
     UserService.prototype.removeDupes = function (array) {
         return array.filter(function (item, currPos) { return array.indexOf(item) == currPos; });
-    };
-    UserService.prototype.getTwitch = function () {
-        if (this.twitchUserList.length < 10)
-            this.getAllProgramming();
-        else
-            console.log(this.twitchUserList);
     };
     UserService.prototype.getChannels = function (query, resultLimit) {
         return this.http.get(this.baseUrl + "search/channels?q=" + query + "&limit=" + resultLimit)
@@ -105,9 +100,9 @@ var UserService = (function () {
         return this.http.get(this.baseUrl + "streams/" + channelName)
             .map(function (res) { return res.json(); });
     };
-    UserService.prototype.getAllProgramming = function () {
+    UserService.prototype.getCoding = function (amount) {
         var _this = this;
-        this.getChannels('programming', '15')
+        this.getChannels('programming', amount)
             .subscribe(function (channelList) {
             var channelArray = channelList.channels;
             channelArray.map(function (channel) {

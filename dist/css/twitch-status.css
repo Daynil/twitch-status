@@ -1,4 +1,17 @@
-.no-select, #page-wrapper #container .tab {
+.inputs, #page-wrapper #controls .amount, #page-wrapper #list-container #filter input {
+  border: 1px solid #865bbe;
+  border-radius: 20px;
+  color: aliceblue;
+  font: normal 15px "Open Sans";
+  height: 30px;
+  padding: 10px;
+  background: #393937;
+  transition: 0.2s; }
+  .inputs:focus, #page-wrapper #controls .amount:focus, #page-wrapper #list-container #filter input:focus {
+    outline: none;
+    box-shadow: 0 0 5px 1px #865bbe; }
+
+.no-select, #page-wrapper .tab {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none; }
@@ -12,6 +25,46 @@
   height: 100vh;
   min-height: 700px;
   margin-bottom: -60px; }
+  #page-wrapper .tab {
+    display: inline-block;
+    margin-top: 4px;
+    margin-right: -1.5px;
+    margin-left: -1.5px;
+    margin-bottom: 2px;
+    width: 31.1%;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgba(169, 110, 247, 0.15);
+    transition: 0.3s;
+    cursor: pointer;
+    color: aliceblue;
+    font: normal 20px "Open Sans";
+    line-height: 45px; }
+    #page-wrapper .tab:hover {
+      background-color: rgba(168, 102, 255, 0.35); }
+    #page-wrapper .tab:active {
+      background-color: rgba(168, 102, 255, 0.55); }
+  #page-wrapper #controls {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 122px; }
+    #page-wrapper #controls .add-button {
+      position: relative;
+      top: 4px;
+      margin-left: 2px;
+      color: #865bbe;
+      cursor: pointer;
+      font-size: 30px;
+      transition: 0.2s; }
+      #page-wrapper #controls .add-button:hover {
+        color: #a17fcc; }
+      #page-wrapper #controls .add-button:active {
+        color: #bca4db; }
+    #page-wrapper #controls .amount {
+      width: 51px;
+      border-radius: 11px; }
+    #page-wrapper #controls #get-programming {
+      font-size: 18px; }
   #page-wrapper #twitch-logo {
     display: inline-block;
     position: relative;
@@ -20,49 +73,19 @@
   #page-wrapper #title {
     display: inline-block;
     margin-top: -10px; }
-  #page-wrapper #container {
+  #page-wrapper #list-container {
+    display: inline-block;
     margin: 0 auto;
     border: 2px solid #865bbe;
     border-radius: 5px;
     width: 360px;
     height: 700px; }
-    #page-wrapper #container .tab {
-      display: inline-block;
-      margin-top: 4px;
-      margin-right: -1.5px;
-      margin-left: -1.5px;
-      margin-bottom: 2px;
-      width: 31.1%;
-      height: 50px;
-      border-radius: 5px;
-      background-color: rgba(169, 110, 247, 0.15);
-      transition: 0.3s;
-      cursor: pointer;
-      color: aliceblue;
-      font: normal 20px "Open Sans";
-      line-height: 45px; }
-      #page-wrapper #container .tab:hover {
-        background-color: rgba(168, 102, 255, 0.35); }
-      #page-wrapper #container .tab:active {
-        background-color: rgba(168, 102, 255, 0.55); }
-    #page-wrapper #container #filter {
+    #page-wrapper #list-container #filter {
       display: inline-block;
       width: 100%;
       border-bottom: 1px solid #865bbe;
       padding: 15 0 15 0; }
-      #page-wrapper #container #filter input {
-        border: 1px solid #865bbe;
-        border-radius: 20px;
-        color: aliceblue;
-        font: normal 15px "Open Sans";
-        height: 30px;
-        padding: 10px;
-        background: #393937;
-        transition: 0.2s; }
-        #page-wrapper #container #filter input:focus {
-          outline: none;
-          box-shadow: 0 0 5px 1px #865bbe; }
-    #page-wrapper #container #users-display {
+    #page-wrapper #list-container #users-display {
       height: 583px;
       max-width: 100%;
       overflow-x: hidden;

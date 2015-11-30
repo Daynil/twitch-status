@@ -18,11 +18,16 @@ var TwitchStatus = (function () {
     function TwitchStatus(userService) {
         this.userService = userService;
     }
-    TwitchStatus.prototype.getTwitch = function () {
-        this.userService.getTwitch();
+    TwitchStatus.prototype.getCoding = function (amount) {
+        if (!amount || /\D/.test(amount))
+            return;
+        this.userService.getCoding(amount);
     };
     TwitchStatus.prototype.filtering = function (filterText) {
         this.userService.filtering(filterText);
+    };
+    TwitchStatus.prototype.liveFilter = function (type) {
+        this.userService.filterLive(type);
     };
     TwitchStatus = __decorate([
         angular2_1.Component({

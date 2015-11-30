@@ -1,13 +1,13 @@
 <div class="user">
 	<a [href]="channelurl">
-		<div id="left" style="display: inline-block;"><img [src]="iconurl"/></div>
+		<div id="left" style="display: inline-block;"><img [src]="user.iconUrl"/></div>
 		<div id="middle" style="display: inline-block;">
-			<div class="name">{{ name }}</div>
-			<div [title]="description" class="description">{{  description }}</div>
+			<div class="name">{{ user.name }}</div>
+			<div [title]="user.description" class="description">{{  user.description }}</div>
 		</div>
 		<div id="right" style="display: inline-block;">
 			<div [ng-class]="setLiveIcon()"></div>
-			<div>{{ viewers }}</div>
+			<div>{{ user.viewers }}</div>
 		</div>
 	</a>
 </div>

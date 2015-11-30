@@ -91,15 +91,11 @@ export class UserService {
 			default:
 				break;
 		}
+		this.filtering("");
 	}
 	
 	removeDupes(array: any[]): any[] {
 		return array.filter( (item, currPos) => { return array.indexOf(item) == currPos; } );
-	}
-	
-	getTwitch() {
-		if (this.twitchUserList.length < 10) this.getAllProgramming();
-		else console.log(this.twitchUserList);
 	}
 	
 	getChannels(query: string, resultLimit: string): Observable<any> {
@@ -112,8 +108,8 @@ export class UserService {
 						.map(res => res.json());
 	}
 	
-	getAllProgramming() {
-		this.getChannels('programming', '15')
+	getCoding(amount: string) {
+		this.getChannels('programming', amount)
 			.subscribe (
 				channelList => {
 					let channelArray: any[] = channelList.channels;

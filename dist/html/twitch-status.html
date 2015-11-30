@@ -1,26 +1,32 @@
 <div id="page-wrapper">
-	<img id="twitch-logo" src="http://www-cdn.jtvnw.net/images/xarth/footer_glitch.png"><h2 id="title">Twitch Status</h2>
-	
-	<div id="container">
-		<div class="tab" (click)="getTwitch()">All</div>
-		<div class="tab">Live</div>
-		<div class="tab">Offline</div>
-		<div id="filter"><input type="text" id="search" placeholder="Filter" (input)="filtering($event.target.value)"></input></div>
-		<div id="users-display">
-			<twitch-user
-				*ng-for="#user of userService.filteredUserList"
-				[name]="user.name"
-				[iconurl]="user.iconUrl"
-				[channelurl]="user.channelUrl"
-				[popularity]="user.popularity"
-				[islive]="user.isLive"
-				[description]="user.description"
-				[viewers]="user.viewers"
-				[previewurl]="user.previewUrl">
-			</twitch-user>
-		</div>
-		<p>{{ userService.aUser }}</p>
+	<div id="header">
+		<img id="twitch-logo" src="http://www-cdn.jtvnw.net/images/xarth/footer_glitch.png"><h2 id="title">Twitch Status</h2>
 	</div>
+	
+	<div id="app-container">
+		<div id="controls">
+			<div id="get-programming">
+				<p>Get 
+					<input type="text" class="amount" placeholder="#" #coding></input> 
+					Coding Streams  <i class="fa fa-arrow-circle-right add-button" (click)="getCoding(coding.value)"></i></p>
+			</div>
+		</div>	
+		
+		<div id="list-container">
+			<div class="tab" (click)="liveFilter('All')">All</div>
+			<div class="tab" (click)="liveFilter('Live')">Live</div>
+			<div class="tab" (click)="liveFilter('Offline')">Offline</div>
+			<div id="filter"><input type="text" id="search" placeholder="Filter" (input)="filtering($event.target.value)"></input></div>
+			<div id="users-display">
+				<twitch-user
+					*ng-for="#user of userService.filteredUserList"
+					[user]="user">
+				</twitch-user>
+			</div>
+			<p>{{ userService.aUser }}</p>
+		</div>
+	</div>
+	
 </div>
 
 <div id="foot">

@@ -16,15 +16,14 @@ var TwitchUser = (function () {
     }
     TwitchUser.prototype.setLiveIcon = function () {
         return {
-            "live": this.islive,
-            "offline": !this.islive
+            "live": this.user.isLive,
+            "offline": !this.user.isLive
         };
     };
     TwitchUser = __decorate([
         angular2_1.Component({
             selector: 'twitch-user',
-            inputs: ['name', 'iconurl', 'channelurl', 'popularity',
-                'islive', 'description', 'viewers', 'previewurl']
+            inputs: ['user']
         }),
         angular2_1.View({
             templateUrl: '../html/twitch-user.html',

@@ -23,12 +23,17 @@ class TwitchStatus {
 	  
   }
   
-  getTwitch() {
-	  this.userService.getTwitch();
+  getCoding(amount: string) {
+	  if (!amount || /\D/.test(amount)) return;
+	  this.userService.getCoding(amount);
   }
   
   filtering(filterText: string) {
 	  this.userService.filtering(filterText);
+  }
+  
+  liveFilter(type: string) {
+	  this.userService.filterLive(type);
   }
   	
 }
