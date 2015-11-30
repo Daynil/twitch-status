@@ -23,9 +23,18 @@ class TwitchStatus {
 	  
   }
   
-  getCoding(amount: string) {
-	  if (!amount || /\D/.test(amount)) return;
-	  this.userService.getCoding(amount);
+  getCoding(amount) {
+	  let amountText = amount.value;
+	  if (!amountText || /\D/.test(amountText)) return;
+	  this.userService.getCoding(amountText);
+	  amount.value = '';
+  }
+  
+  getStream(channelName) {
+	  let channelNameText = channelName.value;
+	  if (!channelNameText) return;
+	  this.userService.findChannel(channelNameText);
+	  channelName.value = '';
   }
   
   filtering(filterText: string) {
@@ -34,6 +43,10 @@ class TwitchStatus {
   
   liveFilter(type: string) {
 	  this.userService.filterLive(type);
+  }
+  
+  clearStreams() {
+	  this.userService.clearStreams();
   }
   	
 }

@@ -8,7 +8,14 @@
 			<div id="get-programming">
 				<p>Get 
 					<input type="text" class="amount" placeholder="#" #coding></input> 
-					Coding Streams  <i class="fa fa-arrow-circle-right add-button" (click)="getCoding(coding.value)"></i></p>
+					Coding Streams  <i class="fa fa-arrow-circle-right add-button" 
+					title="Find programming-related streams" (click)="getCoding(coding)"></i></p>
+			</div>
+			<div id="get-stream">
+				<p>Add Stream:</p>
+					<input type="text" class="amount" placeholder="User Name" #streamer></input><i 
+					class="fa fa-arrow-circle-right add-button" 
+					title="Add a specific user" (click)="getStream(streamer)"></i>
 			</div>
 		</div>	
 		
@@ -25,6 +32,7 @@
 			</div>
 			<p>{{ userService.aUser }}</p>
 		</div>
+		<div id="streams-clear" (click)="clearStreams()"><i class="fa fa-trash"></i></div>
 	</div>
 	
 </div>

@@ -37,7 +37,7 @@
 
 .live {
   margin: 0 auto;
-  margin-bottom: 5px;
+  margin-bottom: 5px !important;
   width: 13px;
   height: 13px;
   background-color: #e62b1a;
@@ -45,10 +45,13 @@
 
 .offline {
   margin: 0 auto;
-  margin-bottom: 5px;
+  margin-bottom: 12px !important;
   width: 13px;
   height: 13px;
   background-color: #786e6d;
   border-radius: 50%; }
+
+.offline-name {
+  margin-bottom: 10px !important; }
 
 /*# sourceMappingURL=twitch-user.css.map */

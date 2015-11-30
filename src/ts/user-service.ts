@@ -8,6 +8,7 @@ export class TwitchUser {
 	
 	isLive: boolean;
 	description: string;
+	descriptionFull: string;
 	viewers: number;
 	previewUrl: string;
 	
@@ -19,37 +20,22 @@ export class UserService {
 	baseUrl = 'https://api.twitch.tv/kraken/';
 	
 	twitchUserList: TwitchUser[] = [];
+	bufferUserList: TwitchUser[] = [];
 	filteredUserList: TwitchUser[] = [];
 	liveFilter: string = "All";
 	twitchIcon = 'http://www-cdn.jtvnw.net/images/xarth/footer_glitch.png';
 	
 	constructor (public http: Http) {
-		this.getChannels('medrybw', '1')
-			.subscribe( 
-				channelInfo => {
-					let baseObject = channelInfo.channels[0];
-					let alwaysLive = new TwitchUser(baseObject.display_name, baseObject.url);
-					alwaysLive.iconUrl = baseObject.logo;
-					alwaysLive.popularity = baseObject.views;
-					this.getLiveStreamInfo(alwaysLive.name.toLowerCase())
-						.subscribe(
-							streamInfo => {
-								alwaysLive.isLive = (streamInfo.stream) ? true : false;
-								if (alwaysLive.isLive) {
-									alwaysLive.description = streamInfo.stream.channel.status;
-									alwaysLive.viewers = streamInfo.stream.viewers;
-									if (streamInfo.preview) alwaysLive.previewUrl = streamInfo.preview.small;
-								}
-								this.twitchUserList.push(alwaysLive);
-								this.filteredUserList.push(alwaysLive);
-								console.log(this.twitchUserList);
-							},
-							err => this.handleError(err)
-						);
-				},
-				err => this.handleError(err)
-			);
-		}
+		// Add FCC suggested coding streamers
+		this.findChannel('freecodecamp');
+		this.findChannel('medrybw');
+		this.findChannel('terakilobyte');
+		this.findChannel('habathcx');
+		this.findChannel('robotcaleb');
+		this.findChannel('thomasballinger');
+		this.findChannel('noobs2ninjas');
+		this.findChannel('beohoff');
+	}
 	
 	filtering(filterText: string) {
 		let currUserList;
@@ -108,8 +94,84 @@ export class UserService {
 						.map(res => res.json());
 	}
 	
+	isUniqueUser(userName: string) {
+		let isUnique = true;
+		this.twitchUserList.map(
+			user => {
+				if (user.name.toLowerCase() == userName.toLowerCase()) isUnique = false;
+			}
+		);
+		return isUnique;
+	}
+	
+	setDescription(channel: TwitchUser, description: string) {
+		if (description.length > 20) {
+			channel.description =  description.substring(0, 21) + '...';
+			channel.descriptionFull = description;
+		}
+		else channel.description = channel.descriptionFull = description;
+	}
+	
+	findChannel(channelName: string) {
+		this.getChannels(channelName, '1')
+			.subscribe( 
+				channelInfo => {
+					if (!channelInfo.channels[0]) {
+						console.log("no results");
+						return;
+					};
+					let baseObject = channelInfo.channels[0];
+					if (baseObject.display_name.toLowerCase() != channelName.toLowerCase()) {
+						console.log("result not equal to requested channel");
+						return;
+					} else if (!this.isUniqueUser(baseObject.display_name)) { // Ignore duplicate requests	
+						console.log("duplicate request");
+						return;
+					} 
+					let resultChannel = new TwitchUser(baseObject.display_name, baseObject.url);
+					if (baseObject.logo) resultChannel.iconUrl = baseObject.logo;
+					else resultChannel.iconUrl = this.twitchIcon;
+					resultChannel.popularity = baseObject.views;
+					this.getLiveStreamInfo(resultChannel.name.toLowerCase())
+						.subscribe(
+							streamInfo => {
+								resultChannel.isLive = (streamInfo.stream) ? true : false;
+								if (resultChannel.isLive) {
+									this.setDescription(resultChannel, streamInfo.stream.channel.status);
+									resultChannel.viewers = streamInfo.stream.viewers;
+									if (streamInfo.preview) resultChannel.previewUrl = streamInfo.preview.small;
+								}
+								this.twitchUserList.push(resultChannel);
+								this.filteredUserList.push(resultChannel);	
+								console.log(this.twitchUserList);
+							},
+							err => this.handleError(err)
+						);
+				},
+				err => this.handleError(err)
+			);
+	}
+	
 	getCoding(amount: string) {
-		this.getChannels('programming', amount)
+		// If we already have a buffer list, add new items to display list until requested amount
+		if (this.bufferUserList.length > 50) {
+			let counter = 1;
+			this.bufferUserList.map( 
+				user => {
+					if (counter <= parseInt(amount)) {
+						if (this.twitchUserList.indexOf(user) < 0) {
+							this.twitchUserList.push(user);
+							this.filteredUserList.push(user);
+							counter++;
+						}
+					}
+				}
+			);
+			return;
+		}
+		// Get maximum available results from twitch first time to store as a buffer but display only requested amount
+		let initialLength = this.twitchUserList.length;
+		this.getChannels('programming', '100')
 			.subscribe (
 				channelList => {
 					let channelArray: any[] = channelList.channels;
@@ -123,12 +185,16 @@ export class UserService {
 								streamInfo => {
 									userChannel.isLive = (streamInfo.stream) ? true : false;
 									if (userChannel.isLive) {
-										userChannel.description = streamInfo.stream.channel.status;
+										this.setDescription(userChannel, streamInfo.stream.channel.status);
 										userChannel.viewers = streamInfo.stream.viewers;
 										if (streamInfo.preview) userChannel.previewUrl = streamInfo.preview.small;
 									}
-									this.twitchUserList.push(userChannel);
-									this.filteredUserList.push(userChannel);
+									this.bufferUserList.push(userChannel);
+									let amountAdded = this.twitchUserList.length - initialLength;
+									if (amountAdded < parseInt(amount)) {
+										this.twitchUserList.push(userChannel);
+										this.filteredUserList.push(userChannel);
+									}
 								},
 								err => this.handleError(err)
 							);
@@ -136,6 +202,12 @@ export class UserService {
 				},
 				err => this.handleError(err)
 			);
+	}
+	
+	clearStreams() {
+		this.twitchUserList = [];
+		this.bufferUserList = [];
+		this.filteredUserList = [];
 	}
 	
 	handleError(error) {

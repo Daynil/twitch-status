@@ -49,7 +49,7 @@ $font-small: normal 15px 'Open Sans';
 
 .live {
 	margin: 0 auto;
-	margin-bottom: 5px;
+	margin-bottom: 5px !important;
 	width: 13px;
 	height: 13px;
 	background-color: hsl(5, 80%, 50%);
@@ -58,9 +58,13 @@ $font-small: normal 15px 'Open Sans';
 
 .offline {
 	margin: 0 auto;
-	margin-bottom: 5px;
+	margin-bottom: 12px !important;
 	width: 13px;
 	height: 13px;
 	background-color: hsl(5, 5%, 45%);
 	border-radius: 50%;
+}
+
+.offline-name {
+	margin-bottom: 10px !important;
 }

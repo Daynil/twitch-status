@@ -19,15 +19,27 @@ var TwitchStatus = (function () {
         this.userService = userService;
     }
     TwitchStatus.prototype.getCoding = function (amount) {
-        if (!amount || /\D/.test(amount))
+        var amountText = amount.value;
+        if (!amountText || /\D/.test(amountText))
             return;
-        this.userService.getCoding(amount);
+        this.userService.getCoding(amountText);
+        amount.value = '';
+    };
+    TwitchStatus.prototype.getStream = function (channelName) {
+        var channelNameText = channelName.value;
+        if (!channelNameText)
+            return;
+        this.userService.findChannel(channelNameText);
+        channelName.value = '';
     };
     TwitchStatus.prototype.filtering = function (filterText) {
         this.userService.filtering(filterText);
     };
     TwitchStatus.prototype.liveFilter = function (type) {
         this.userService.filterLive(type);
+    };
+    TwitchStatus.prototype.clearStreams = function () {
+        this.userService.clearStreams();
     };
     TwitchStatus = __decorate([
         angular2_1.Component({

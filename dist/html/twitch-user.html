@@ -2,8 +2,8 @@
 	<a [href]="channelurl">
 		<div id="left" style="display: inline-block;"><img [src]="user.iconUrl"/></div>
 		<div id="middle" style="display: inline-block;">
-			<div class="name">{{ user.name }}</div>
-			<div [title]="user.description" class="description">{{  user.description }}</div>
+			<div class="name" [class.offline-name]="!user.isLive">{{ user.name }}</div>
+			<div [title]="user.descriptionFull" class="description">{{  user.description }}</div>
 		</div>
 		<div id="right" style="display: inline-block;">
 			<div [ng-class]="setLiveIcon()"></div>
