@@ -42,7 +42,7 @@ var UserService = (function () {
         var currUserList;
         switch (this.liveFilter) {
             case "All":
-                currUserList = this.twitchUserList;
+                currUserList = this.twitchUserList.slice();
                 break;
             case "Live":
                 currUserList = this.twitchUserList.filter(function (user) { return user.isLive; });

@@ -41,7 +41,7 @@ export class UserService {
 		let currUserList;
 		switch (this.liveFilter) {
 			case "All":
-				currUserList = this.twitchUserList;
+				currUserList = this.twitchUserList.slice();
 				break;
 			case "Live":
 				currUserList = this.twitchUserList.filter( user => {return user.isLive} );

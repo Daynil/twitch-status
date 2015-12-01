@@ -1,5 +1,5 @@
-<div class="user">
-	<a [href]="channelurl">
+<div class="twitch-user">
+	<a [href]="user.channelUrl">
 		<div id="left" style="display: inline-block;"><img [src]="user.iconUrl"/></div>
 		<div id="middle" style="display: inline-block;">
 			<div class="name" [class.offline-name]="!user.isLive">{{ user.name }}</div>
