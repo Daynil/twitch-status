@@ -1,6 +1,1 @@
-# Don't add devdependencies
 node_modules
-
-# Don't add compiled files
-app.js
-app.js.map
