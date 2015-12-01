@@ -47,8 +47,8 @@ var TwitchStatus = (function () {
             viewBindings: [user_service_1.UserService]
         }),
         angular2_1.View({
-            templateUrl: '../html/twitch-status.html',
-            styleUrls: ['../css/twitch-status.css'],
+            templateUrl: './twitch-status.html',
+            styleUrls: ['./twitch-status.css'],
             directives: [angular2_1.CORE_DIRECTIVES, twitch_user_1.TwitchUser]
         }), 
         __metadata('design:paramtypes', [user_service_1.UserService])

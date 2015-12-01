@@ -26,8 +26,8 @@ var TwitchUser = (function () {
             inputs: ['user']
         }),
         angular2_1.View({
-            templateUrl: '../html/twitch-user.html',
-            styleUrls: ['../css/twitch-user.css']
+            templateUrl: './twitch-user.html',
+            styleUrls: ['./twitch-user.css']
         }), 
         __metadata('design:paramtypes', [])
     ], TwitchUser);
